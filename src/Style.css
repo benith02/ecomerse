@@ -1,0 +1,83 @@
+body{
+    background-color: rgba(21, 18, 35, 0.519);
+}
+.nav-buttons{
+    display: flex;
+    gap: 20px;
+    justify-content: flex-end;
+    align-items: center;
+
+    /* background-color: blue; */
+
+
+}
+
+.nav-buttons button{
+background-color: red;
+    cursor: pointer;
+}
+.nav-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    color: white;
+}
+/* .carousel-img-double{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+} */
+
+.product-grid {
+margin-top: 30%;
+ display:grid;
+ grid-template-columns: repeat(4, 1fr);
+ grid-template-rows: repeat(3, 1fr);
+ gap: 10px; 
+ cursor: pointer;
+
+}
+.product-card{
+    border: 1px solid black;
+    padding: 5px;
+}
+.product-card img{
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background-color: white;
+}
+/* login page */
+.login-bg {
+  height: 100vh;
+  background-image: url("https://cdn.pixabay.com/photo/2023/03/14/08/48/ai-generated-7851885_1280.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* glass effect login page*/
+.login-box {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 10px;
+}
+
