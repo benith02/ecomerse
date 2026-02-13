@@ -1,14 +1,11 @@
 body{
-    background-color: rgba(21, 18, 35, 0.519);
+    background-color: #0E004F;
 }
 .nav-buttons{
     display: flex;
     gap: 20px;
     justify-content: flex-end;
     align-items: center;
-
-    /* background-color: blue; */
-
 
 }
 
@@ -21,7 +18,7 @@ background-color: red;
     justify-content: space-between;
     align-items: center;
     
-    color: white;
+    color: rgba(255, 255, 255, 0.489);
 }
 /* .carousel-img-double{
     display: flex;
@@ -30,7 +27,7 @@ background-color: red;
     align-items: center;
     flex-direction: column;
 } */
-
+/* product ---------------------------------------------------------------------------------------------------------*/
 .product-grid {
 margin-top: 30%;
  display:grid;
@@ -41,43 +38,332 @@ margin-top: 30%;
 
 }
 .product-card{
-    border: 1px solid black;
+    border: 1px solid rgba(0, 0, 0, 0.171);
     padding: 5px;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    font-size: 20px;
+}
+.product-card:hover {
+  transform: translateY(-20px); /* move up */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  background-color: rgba(21, 0, 57, 0.653);
 }
 .product-card img{
     width: 100%;
     height: auto;
     object-fit: cover;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.215);
+    border-radius: 10px;
+  }
+.product-left{
+   display: flex;
+   width:30%;
 }
-/* login page */
-.login-bg {
-  height: 100vh;
-  background-image: url("https://cdn.pixabay.com/photo/2023/03/14/08/48/ai-generated-7851885_1280.jpg");
-  background-size: cover;
-  background-position: center;
+.product-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;   /* number of lines to show */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+  margin:10px;
+}
+
+  .product-card p{
+    color: white;
+  }
+  .back-btn{
+    position: absolute  ;
+    top:30px;
+    left:30px;
+    width:100px;
+    
+    background-color: rgb(0, 0, 0);
+    cursor: pointer;
+  }
+  .status-button{
+    display: flex;
+    justify-content: space-around;
+    width: 10%;
+    height: 10vh;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .product-container{
+    display: flex;
+  }
+  .product-right{
+    width: 100%;
+  }
+  .product-left img{
+    width:250px;
+    
+  }
+  /* .product-right{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    background-color: rgb(22, 179, 48);
+  }
+  */
+  
+  
+  /* login page */
+  .login-bg {
+    height: 100vh;
+    background-image: url("https://cdn.pixabay.com/photo/2023/03/14/08/48/ai-generated-7851885_1280.jpg");
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* glass effect login page*/
+  .login-box {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .login-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .login-box button {
+    width: 100%;
+    padding: 10px;
+  }
+  /* product -------------------------------------------------------------------------------------------------------*/
+  .product-details{
+    display: inline;
+  }
+  .product-details img{
+    display: flex;
+    justify-content: flex-start;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    background-color: white;
+  }
+  .product-details div p{
+    display: flex;
+    justify-content: flex-start;
+  }
+  .product-details-box{
+    background-color: red;
+  }
+  .product-right{
+    position: relative;
+    top:25%;
+    right:10%
+    
+  }
+
+  
+  .product-page{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap:2%;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgb(139, 136, 94); */
+  background: #0E004F;
+}
+.product-page img{
+  position: relative;
+  margin-top:3%;
+  border-radius: 32% 13%;
+  background-color: rgba(119, 233, 231, 0.364);
+}
+.product-box{
+ float: right;
+ margin:3% 0%;
+ padding: 1%;
+ max-width: 60%;
+  background-color: rgba(119, 233, 231, 0.364);
+  border-radius: 2%;
+  text-align: start;
+  font-size: 20px;
+}
+.btn-box{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 10px;
+
+}
+/* .back-arrow{
+  position:absolute;
+  top:8%;
+  left:10%;
+  cursor: pointer;
+  color: white;
+} */
+/* cart -------------------------------------------------------------------------------------------------------*/
+.cart-vertical-btn {
+  width: 120px;
+  height: 280px;
+  background: linear-gradient(180deg, #111, #222);
+  border: 2px solid white;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px 10px;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s ease;
 }
 
-/* glass effect login page*/
-.login-box {
-  background: rgba(255, 255, 255, 0.85);
-  padding: 30px;
-  border-radius: 10px;
-  width: 300px;
+.cart-vertical-btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cart-icon {
+  width: 80px;
+  height: 80px;
+}
+
+.buy-now {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Click animation */
+.cart-vertical-btn.clicked {
+  background: green;
+}
+
+/* buynow button --------------------------------------------------------------------------------------------------*/
+/* From Uiverse.io by JaydipPrajapati1910 */ 
+.button {
+  --width: 150px;
+  --height: 50px;
+  /* --tooltip-height: 35px;
+  --tooltip-width: 90px; */
+  --gap-between-tooltip-to-button: 18px;
+  --button-color: #222;
+  --tooltip-color: #fff;
+  width: var(--width);
+  height: var(--height);
+  background: var(--button-color);
+  position: relative;
   text-align: center;
+  border-radius: 0.45em;
+  font-family: "Arial";
+  transition: all 0.3s;
 }
 
-.login-box input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+.button::before {
+  position: absolute;
+  /* content: attr(data-tooltip); */
+  width: var(--tooltip-width);
+  height: var(--tooltip-height);
+  background-color: #555;
+  font-size: 0.9rem;
+  color: #fff;
+  border-radius: .25em;
+  line-height: var(--tooltip-height);
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) + 10px);
+  left: calc(50% - var(--tooltip-width) / 2);
 }
 
-.login-box button {
-  width: 100%;
-  padding: 10px;
+/* .button::after {
+  position: absolute;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #555;
+  left: calc(50% - 10px);
+  bottom: calc(100% + var(--gap-between-tooltip-to-button) - 10px);
+} */
+
+.button::after,.button::before {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.5s;
 }
+
+.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-wrapper,.text,.icon {
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  color: #fff;
+}
+
+.text {
+  top: 0
+}
+
+.text,.icon {
+  transition: top 0.5s;
+}
+
+.icon {
+  color: #fff;
+  top: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.button:hover {
+  background: #222;
+}
+
+.button:hover .text {
+  top: -100%;
+}
+
+.button:hover .icon {
+  top: 0;
+}
+
+.button:hover:before,.button:hover:after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* .button:hover:after {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button) - 20px);
+} */
+
+.button:hover:before {
+  bottom: calc(var(--height) + var(--gap-between-tooltip-to-button));
+}
+
+
 

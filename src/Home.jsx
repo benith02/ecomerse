@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 import './Style.css'
-import Carousel from './Carousel'
+
 import Login from './Login.jsx'
 import { useNavigate } from 'react-router-dom'
 import ThreeDImageCarousel from "./ThreeDImageCarousel";
@@ -23,7 +24,7 @@ const slides = [
   { id: 4, src: img4 },
   { id: 5, src: img5 }
 ];
-useEffect(() => {
+// useEffect(() => {
 
 //shopping
 // ecommerce
@@ -33,13 +34,13 @@ useEffect(() => {
 // clothes
 // lifestyle product
 
-  axios.get(
-  `https://pixabay.com/api/?key=54610413-461a954816927f90e97ae4aad&q=lifestyle_product&image_type=photo&orientation=horizontal&per_page=12`
-)
-.then(res => {
-  const urls = res.data.hits.map(img => img.webformatURL)
-  setImages(urls)
-})
+//   axios.get(
+//   `https://pixabay.com/api/?key=54610413-461a954816927f90e97ae4aad&q=lifestyle_product&image_type=photo&orientation=horizontal&per_page=12`
+// )
+// .then(res => {
+//   const urls = res.data.hits.map(img => img.webformatURL)
+//   setImages(urls)
+// })
 
 
 //   axios.get(
@@ -49,8 +50,7 @@ useEffect(() => {
 //   const urls2 = res.data.hits.map(img => img.webformatURL)
 //   setImages2(urls2)
 // })
-}
-)
+// },[])
 
 
   useEffect(() => {
@@ -81,14 +81,12 @@ useEffect(() => {
       <div className="product-grid">
   {data.map(item => (
     <div className="product-card" key={item.id}>
-      
       <img src={item.thumbnail} alt={item.title} />
       <p><b>{item.title}</b></p>
       <p>Price: ${item.price}</p>
       <p>{item.description}</p>
       <p>Category: {item.category}</p>
       <p>Rating: {item.rating}</p>
-      
     </div>
   ))}
 </div>
