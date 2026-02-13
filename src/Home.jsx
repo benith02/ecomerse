@@ -81,12 +81,14 @@ useEffect(() => {
       <div className="product-grid">
   {data.map(item => (
     <div className="product-card" key={item.id}>
+      
       <img src={item.thumbnail} alt={item.title} />
       <p><b>{item.title}</b></p>
       <p>Price: ${item.price}</p>
       <p>{item.description}</p>
       <p>Category: {item.category}</p>
       <p>Rating: {item.rating}</p>
+      
     </div>
   ))}
 </div>
