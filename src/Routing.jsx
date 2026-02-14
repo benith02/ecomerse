@@ -1,6 +1,7 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Product from './Product'
+import Navbar from './Navbar'
 
 import Home from './Home'
 // import About from './About'
@@ -20,6 +21,7 @@ function Routing() {
       <Route path="/product/:source/:id" element={<Product />} />
       {/* <Route path="/register" element={<Register />} /> */}
       <Route path="/order" element={<OrderPage />} />
+      <Route path="/navbar" element={<Navbar />} />
     </Routes>
   )
 }

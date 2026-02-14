@@ -4,6 +4,7 @@ import axios from 'axios'
 import './Style.css'
 import StatusButton from './StatusButton'
 import BuynowBtn from './BuynowBtn'
+import Navbar from './Navbar'
 
 function Product() {
   const { id, source } = useParams()
@@ -22,6 +23,9 @@ function Product() {
     brand: p.brand ?? "N/A",
     category: p.category
   })
+// const handleSearch = (text) => {
+//   console.log("Search on product page:", text);
+// };
 
   useEffect(() => {
     setLoading(true)
@@ -59,7 +63,9 @@ function Product() {
       <Link to="/">
         <button className='back-btn'>&lt; Home</button>
       </Link>
-
+      <div>
+{/* <Navbar /> */}
+      </div>
       <img
         src={product.image}
         alt={product.title}
