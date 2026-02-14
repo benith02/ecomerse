@@ -18,6 +18,8 @@ function Routing() {
       <Route path="/login" element={<Login />} />
       <Route path="/product/:id" element={<Product />} />
       {/* <Route path="/register" element={<Register />} /> */}
+     
+
        
     </Routes>
   )
