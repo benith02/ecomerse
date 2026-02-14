@@ -7,6 +7,7 @@ import Home from './Home'
 // import Contact from './Contact'
 import Login from './Login'
 // import Register from './Register'
+import OrderPage from "./OrderPage";
 
 function Routing() {
   return (
@@ -17,6 +18,8 @@ function Routing() {
       <Route path="/login" element={<Login />} />
       <Route path="/product/:id" element={<Product />} />
       {/* <Route path="/register" element={<Register />} /> */}
+      <Route path="/order" element={<OrderPage />} />
+
     </Routes>
   )
 }
