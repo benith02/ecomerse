@@ -21,7 +21,7 @@ export default function StatusButton() {
 
   return (
     <button
-      onClick={changeStatus}
+      onClick={() => changeStatus()}
       disabled={!isEnabled}
       className="status-button"
     >

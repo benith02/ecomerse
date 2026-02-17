@@ -5,6 +5,7 @@ import './Style.css'
 import StatusButton from './StatusButton'
 import BuynowBtn from './BuynowBtn'
 import Navbar from './Navbar'
+import InsaneFluidCursor from './InsaneFluidCursor'
 
 function Product() {
   const { id, source } = useParams()
@@ -59,19 +60,18 @@ function Product() {
 
   return (
     <div className='product-page'>
+      <InsaneFluidCursor />
+      <Navbar />
       {/* Back button */}
-      <Link to="/">
-        <button className='back-btn'>&lt; Home</button>
-      </Link>
-      <div>
-{/* <Navbar /> */}
-      </div>
+    
+      <div style={{"marginTop": "100px", "marginLeft": "100px"}}>
+        
       <img
         src={product.image}
         alt={product.title}
         width="300"
         className='product-left'
-      />
+        />
 
       <div className='product-box'>
         <h2>{product.title}</h2>
@@ -87,6 +87,7 @@ function Product() {
           <BuynowBtn />
           <StatusButton />
         </div>
+      </div>
       </div>
     </div>
   )
