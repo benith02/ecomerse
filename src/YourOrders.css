@@ -1,7 +1,7 @@
 /* Page background */
 .orders-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to blue gradient */
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,50 +11,101 @@
 /* Main container */
 .orders-container {
   width: 100%;
-  max-width: 700px;
-  background: #fdf6ff; /* Light lavender */
+  max-width: 750px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
 }
 
 /* Title */
 .orders-container h2 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #3b0a6b; /* Dark purple */
+  margin-bottom: 25px;
+  color: white;
+  letter-spacing: 1px;
 }
 
-/* Order Card */
+/* ===== Animated Order Card ===== */
 .order-card {
-  background: #fff0f8; /* Soft pink */
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  border-left: 5px solid #ff69b4; /* Hot pink accent */
-  transition: 0.3s ease;
+  position: relative;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: 0.4s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
+/* Gradient animated border */
+.order-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 2px;
+  background: linear-gradient(
+    45deg,
+    #ff00cc,
+    #3333ff,
+    #00ffcc,
+    #ffcc00,
+    #ff00cc
+  );
+  background-size: 300% 300%;
+  animation: borderMove 6s linear infinite;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+}
+
+/* Hover Lift Effect */
 .order-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
 }
 
-/* Order details */
+/* Image */
+.order-image {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+  transition: 0.4s ease;
+}
+
+.order-card:hover .order-image {
+  transform: scale(1.1) rotate(2deg);
+}
+
+/* Text */
 .order-card h4 {
+  text-align: center;
+  color: white;
   margin-bottom: 10px;
-  color: #4b0082; /* Indigo for headings */
 }
 
 .order-card p {
-  margin: 5px 0;
-  color: #666;
+  text-align: center;
+  color: #f0f0f0;
   font-size: 14px;
 }
 
-/* Empty message */
+/* No orders text */
 .no-orders {
   text-align: center;
-  color: #aaa;
-  font-size: 16px;
+  color: white;
+  font-size: 18px;
+}
+
+/* Border Animation */
+@keyframes borderMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
