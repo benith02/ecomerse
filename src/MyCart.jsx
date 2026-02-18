@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 
-function MyCart() {
+export default function MyCart() {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
