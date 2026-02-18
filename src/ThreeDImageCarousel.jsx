@@ -3,87 +3,171 @@ import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 
 // --- CSS ---
 const EMBEDDED_CSS = `
-.cascade-slider_container {
-  position: relative;
-  width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
-  z-index: 20;
-  user-select: none;
-  touch-action: pan-y;
-  overflow:visible;
-  padding:0;
-  margin:0 auto;
- 
-}
-
-.cascade-slider_slides {
-  margin-top: 0;
-  margin-bottom: 0;
-  position: relative;
-  width: 100%;
-  height: 380px;
-}
-
-.cascade-slider_item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(0.3);
-  transition: all 0.8s ease;
-  opacity: 0;
-}
-
-/* Bigger slides */
-.cascade-slider_item.next {
-  transform: translate(-130%, -50%) scale(0.75);
-  opacity: 1;   
-  z-index:2;
-}
-
-.cascade-slider_item.prev {
-  transform: translate(30%, -50%) scale(0.75);
-  opacity: 1;
-  z-index:2;
-}
-
-.cascade-slider_item.now {
-  transform: translate(-50%, -50%) scale(1.1);
-  opacity: 1;
-  z-index:3;
-}
-
-/* arrows */
-.cascade-slider_arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 10;
-  color: white;
-}
-
-.cascade-slider_arrow-left { left: 5%; }
-.cascade-slider_arrow-right { right: 5%; }
-
-/* Bigger images */
-.cascade-slider_slides img {
-  max-width: 520px;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 24px;
-}
-
-@media (max-width: 768px) {
-  .cascade-slider_slides img {
-    width: 320px;
+  .cascade-slider_container {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    margin: 10px auto;
+    margin-top: 4%;
+    z-index: 20;
+    user-select: none;
+    touch-action: pan-y;
+    overflow: hidden;
+    padding:0;
   }
 
-  .cascade-slider_item.next,
+  .cascade-slider_slides {
+    position: relative;
+    width: 100%;
+    aspect-ratio:16/9;
+    max-height: 350px;
+  }
+
+  .cascade-slider_item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.4);
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), 
+              opacity 1.5s ease;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  .cascade-slider_item.next {
+    transform: translate(-110%, -50%) scale(0.85);
+    opacity: 1;
+    z-index: 2;
+  }
+
   .cascade-slider_item.prev {
-    display: none;
+    transform: translate(10%, -50%) scale(0.85);
+    opacity: 1;
+    z-index: 2;
+  }
+
+  .cascade-slider_item.now {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 1;
+    z-index: 3;
+  }
+
+  .cascade-slider_slides img {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  .cascade-slider_arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    color: white;
+  }
+
+  .cascade-slider_arrow-left { left: 3%; }
+  .cascade-slider_arrow-right { right: 3%; }
+
+ @media (min-width: 768px) and (max-width: 1024px) {
+  .cascade-slider_container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  .cascade-slider_slides {
+    height: 200px;
+    max-height: unset;
+    aspect-ratio: unset;
+    margin: 20% 0 2% 0;
+  }
+
+  .cascade-slider_item {
+    width: 50%;
+  }
+
+  .cascade-slider_item.now {
+    transform: translate(-50%, -50%) scale(1);
+    z-index: 3;
+  }
+
+  .cascade-slider_item.next {
+    transform: translate(-95%, -50%) scale(0.82);
+    opacity: 0.85;
+  }
+
+  .cascade-slider_item.prev {
+    transform: translate(-5%, -50%) scale(0.82);
+    opacity: 0.85;
+  }
+
+  .cascade-slider_slides img {
+    width: 100%;
+    max-width: 100% !important;
+    height: auto;
+    border-radius: 16px;
+  }
+  .cascade-slider_arrow-left { left: 2%; top: 70%; }
+  .cascade-slider_arrow-right { right: 2%; top: 70%; }
+  .cascade-slider_arrow svg {
+    width: 40px;
+    height: 40px;
+  }
+  .cascade-slider_arrow {
+    display: block !important;
+    z-index: 10;
+    color: white;
+    border-radius: 50%;
+    padding: 4px;
   }
 }
+
+  @media (max-width: 767px) {
+    .cascade-slider_slides {
+      height: 150px;
+      max-height: unset;
+      aspect-ratio: unset;
+      margin: 43% 0 0% 0;
+    }
+    .cascade-slider_item {
+      width: 85%;
+    }
+    .cascade-slider_item.next,
+    .cascade-slider_item.prev {
+      display: none;
+    }
+    .cascade-slider_item.now {
+      transform: translate(-50%, -50%) scale(1);
+      z-index: 3;
+    }
+    .cascade-slider_slides img {
+      width: 100%;
+      max-width: 100% !important;
+      height: auto;
+      border-radius: 14px;
+    }
+    .cascade-slider_arrow {
+      display: block !important;
+      z-index: 10;
+      color: white;
+      border-radius: 50%;
+      padding: 4px;
+      top: 38%;
+      transform: translateY(-50%);
+    }
+    .cascade-slider_arrow-left {
+      left: 3%;
+      top: 75%;
+    }
+    .cascade-slider_arrow-right {
+      right: 3%;
+      top: 75%;
+    }
+  }
 `;
 
 const getSlideClasses = (index, activeIndex, total) => {
@@ -102,8 +186,26 @@ export default function ThreeDImageCarousel({
   className = ""
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [currentDelay, setCurrentDelay] = useState(delay); // ✅ INSIDE component
   const autoplayRef = useRef(null);
   const total = slides.length;
+
+  // ✅ Update delay based on screen size
+  useEffect(() => {
+    const updateDelay = () => {
+      const width = window.innerWidth;
+      if (width <= 767) {
+        setCurrentDelay(6);
+      } else if (width <= 1024) {
+        setCurrentDelay(5);
+      } else {
+        setCurrentDelay(delay);
+      }
+    };
+    updateDelay();
+    window.addEventListener("resize", updateDelay);
+    return () => window.removeEventListener("resize", updateDelay);
+  }, [delay]);
 
   const navigate = useCallback(
     (dir) => {
@@ -114,27 +216,30 @@ export default function ThreeDImageCarousel({
     [total]
   );
 
-  const startAutoplay = useCallback(() => {
-    if (autoplay && total > 1) {
-      autoplayRef.current = setInterval(() => {
-        navigate("next");
-      }, delay * 1000);
-    }
-  }, [autoplay, delay, navigate, total]);
+ // ✅ Clear old interval BEFORE starting new one when delay changes
+const startAutoplay = useCallback(() => {
+  if (autoplayRef.current) clearInterval(autoplayRef.current); // ✅ clear first
+  if (autoplay && total > 1) {
+    autoplayRef.current = setInterval(() => {
+      navigate("next");
+    }, currentDelay * 1000);
+  }
+}, [autoplay, currentDelay, navigate, total]);
 
   const stopAutoplay = () => {
     if (autoplayRef.current) clearInterval(autoplayRef.current);
   };
 
-  useEffect(() => {
-    startAutoplay();
-    return stopAutoplay;
-  }, [startAutoplay]);
+// ✅ Restart autoplay whenever currentDelay changes
+useEffect(() => {
+  stopAutoplay();        // kill old interval
+  startAutoplay();       // start fresh with new delay
+  return stopAutoplay;
+}, [startAutoplay]);     // startAutoplay already depends on currentDelay
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: EMBEDDED_CSS }} />
-
       <div
         className={`cascade-slider_container ${className}`}
         onMouseEnter={() => pauseOnHover && stopAutoplay()}

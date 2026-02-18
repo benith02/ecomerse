@@ -79,7 +79,10 @@ const DynamicNavigation = ({
         backgroundColor: backgroundColor,
         color: textColor,
         boxShadow: `0 0 ${glowIntensity}px rgba(255,255,255,0.3)`,
-        width: "max-content",
+        width: "100%",
+maxWidth: "400px",
+marginRight: "0",
+
       }}
     >
       <div
