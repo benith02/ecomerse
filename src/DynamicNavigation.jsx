@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Style.css"; // Make sure to include this CSS
+import { useNavigate } from "react-router-dom";
+import "./Style.css";
 
 const DynamicNavigation = ({
   links = [],
@@ -13,8 +14,11 @@ const DynamicNavigation = ({
   activeLink,
   enableRipple = true,
 }) => {
+
   const navRef = useRef(null);
   const highlightRef = useRef(null);
+  const navigate = useNavigate(); // ⭐ Added
+
   const safeLinks = Array.isArray(links) ? links : [];
 
   const [active, setActive] = useState(
@@ -23,35 +27,60 @@ const DynamicNavigation = ({
 
   const updateHighlightPosition = (id) => {
     if (!navRef.current || !highlightRef.current) return;
-    const linkElement = navRef.current.querySelector(`#nav-item-${id || active}`);
+
+    const linkElement = navRef.current.querySelector(
+      `#nav-item-${id || active}`
+    );
+
     if (!linkElement) return;
 
     const { left, width } = linkElement.getBoundingClientRect();
     const navRect = navRef.current.getBoundingClientRect();
-    highlightRef.current.style.transform = `translateX(${left - navRect.left}px)`;
+
+    highlightRef.current.style.transform =
+      `translateX(${left - navRect.left}px)`;
+
     highlightRef.current.style.width = `${width}px`;
   };
 
   const createRipple = (event) => {
     if (!enableRipple) return;
+
     const button = event.currentTarget;
     const circle = document.createElement("span");
+
     const diameter = Math.max(button.clientWidth, button.clientHeight);
+
     circle.style.width = circle.style.height = `${diameter}px`;
-    circle.style.left = `${event.clientX - button.getBoundingClientRect().left - diameter / 2}px`;
-    circle.style.top = `${event.clientY - button.getBoundingClientRect().top - diameter / 2}px`;
+
+    circle.style.left =
+      `${event.clientX - button.getBoundingClientRect().left - diameter / 2}px`;
+
+    circle.style.top =
+      `${event.clientY - button.getBoundingClientRect().top - diameter / 2}px`;
+
     circle.className = "ripple";
+
     const ripple = button.getElementsByClassName("ripple")[0];
     if (ripple) ripple.remove();
+
     button.appendChild(circle);
     setTimeout(() => circle.remove(), 600);
   };
 
-  const handleLinkClick = (id, e) => {
+  // ⭐ FIXED FUNCTION
+  const handleLinkClick = (link, e) => {
     e.preventDefault();
+
     if (enableRipple) createRipple(e);
-    setActive(id);
-    if (onLinkClick) onLinkClick(id);
+
+    setActive(link.id);
+
+    if (link.href) {
+      navigate(link.href);   // ⭐ React Router Navigation
+    }
+
+    if (onLinkClick) onLinkClick(link.id);
   };
 
   const handleLinkHover = (id) => {
@@ -80,9 +109,8 @@ const DynamicNavigation = ({
         color: textColor,
         boxShadow: `0 0 ${glowIntensity}px rgba(255,255,255,0.3)`,
         width: "100%",
-maxWidth: "400px",
-marginRight: "0",
-
+        maxWidth: "400px",
+        marginRight: "0",
       }}
     >
       <div
@@ -93,13 +121,20 @@ marginRight: "0",
 
       <ul className="nav-links">
         {safeLinks.map((link) => (
-          <li key={link.id} id={`nav-item-${link.id}`} className="nav-item">
+          <li
+            key={link.id}
+            id={`nav-item-${link.id}`}
+            className="nav-item"
+          >
             <a
               href={link.href || "#"}
-              className={`nav-link ${active === link.id ? "active" : ""} ${
-                showLabelsOnMobile ? "show-label" : ""
-              }`}
-              onClick={(e) => handleLinkClick(link.id, e)}
+              className={`nav-link ${
+                active === link.id ? "active" : ""
+              } ${showLabelsOnMobile ? "show-label" : ""}`}
+
+              // ⭐ FIXED CALL
+              onClick={(e) => handleLinkClick(link, e)}
+
               onMouseEnter={() => handleLinkHover(link.id)}
             >
               {link.icon && <span className="icon">{link.icon}</span>}
