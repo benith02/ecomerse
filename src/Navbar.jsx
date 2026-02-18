@@ -17,7 +17,7 @@ export default function Navbar({ onSearch }) {
       <DynamicNavigation
         links={[
           { id: "home", label: "Home", href: "/" },
-          { id: "cart", label: "My Cart", href: "/cart" },
+          { id: "cart", label: "My Cart", href: "/MyCart" },
           { id: "orders", label: "Your Orders", href: "/OrderPage" },
           { id: "login", label: "Login", href: "/login" },
         ]}
