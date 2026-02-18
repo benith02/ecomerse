@@ -115,8 +115,11 @@ function Product() {
   })
 
   const handleAddToCart = () => {
-    addToCart(product)
-    alert("Added to Cart ✅")
+     if (!product) return;
+
+  addToCart(product)
+  alert(`${product.title} added to cart ✅`)
+  navigate("/Mycart")   
   }
 
   useEffect(() => {
@@ -207,7 +210,7 @@ function Product() {
               <BuynowBtn product={product} quantity={quantity} />
 
               <div onClick={handleAddToCart}>
-                <StatusButton product={product} quantity={quantity} />
+                <StatusButton product={product} quantity={quantity}  />
               </div>
 
             </div>
