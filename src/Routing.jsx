@@ -12,6 +12,7 @@ import DynamicNavigation from './DynamicNavigation'
 import OrderPage from "./OrderPage";
 
 
+
 function Routing() {
   return (
     <Routes>
@@ -23,6 +24,8 @@ function Routing() {
       {/* <Route path="/register" element={<Register />} /> */}
       <Route path="/order" element={<OrderPage />} />
       <Route path="/navbar" element={<Navbar />} />
+      
+
      
 
     </Routes>

@@ -41,7 +41,7 @@ export default function StatusButton({ product }) {
 
   return (
     <button
-      onClick={changeStatus}
+      onClick={() => changeStatus()}
       disabled={!isEnabled}
       className="status-button"
     >

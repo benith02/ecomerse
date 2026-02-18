@@ -1,19 +1,48 @@
-import React from 'react'
-import './Style.css'
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    if (email && password) {
+      localStorage.setItem("isLoggedIn", "true");
+      alert("Login Successful!");
+      navigate("/");
+    } else {
+      alert("Please enter email and password");
+    }
+  };
+
   return (
-    <div className="login-bg">
-      <div className="login-box">
-        <h3>Login</h3>
-        <form>
-          <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
-          <button type="submit">Login</button>
-        </form>
-      </div>
+    <div style={{ marginTop: "100px" }}>
+      <h2>Login</h2>
+
+      <form onSubmit={handleLogin}>
+        <input
+          type="email"
+          placeholder="Enter Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <br /><br />
+
+        <input
+          type="password"
+          placeholder="Enter Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <br /><br />
+
+        <button type="submit">Login</button>
+      </form>
     </div>
-  )
+  );
 }
 
-export default Login
+export default Login;
