@@ -10,6 +10,7 @@ import Login from './Login'
 import Register from './Register'
 import DynamicNavigation from './DynamicNavigation'
 import OrderPage from "./OrderPage";
+import MyCart from "./MyCart";
 
 
 function Routing() {
@@ -29,6 +30,7 @@ function Routing() {
 
 <Route path="/login" element={<Login />} />
 <Route path="/register" element={<Register />} />
+<Route path="/cart" element={<MyCart />} />
 
 
 
