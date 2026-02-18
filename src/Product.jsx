@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+
 import axios from 'axios'
 import './Style.css'
 import StatusButton from './StatusButton'
 import BuynowBtn from './BuynowBtn'
 import Navbar from './Navbar'
 import InsaneFluidCursor from './InsaneFluidCursor'
+import { CartContext } from './CartContext'
 
 import Box from '@mui/material/Box'
 import Rating from '@mui/material/Rating'
@@ -28,9 +30,10 @@ function YourRating() {
 
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: '6px', mt: '6px' }}>
-      <Typography sx={{ fontSize: '0.85rem', fontWeight: 700, color: 'rgba(255,255,255,0.7)', fontFamily: 'inherit', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+      <Typography sx={{ fontSize: '0.85rem', fontWeight: 700, color: 'rgba(255,255,255,0.7)' }}>
         Your Rating
       </Typography>
+
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
         <Rating
           name="user-rating"
@@ -46,8 +49,9 @@ function YourRating() {
             '& .MuiRating-iconHover': { color: '#ffe585' },
           }}
         />
+
         {value !== null && (
-          <Typography sx={{ fontSize: '0.88rem', fontWeight: 600, color: '#00e0c0', fontFamily: 'inherit', minWidth: '72px' }}>
+          <Typography sx={{ fontSize: '0.88rem', fontWeight: 600, color: '#00e0c0' }}>
             {labels[hover !== -1 ? hover : value]}
           </Typography>
         )}
@@ -65,10 +69,16 @@ function QuantitySelector({ quantity, setQuantity, maxStock }) {
       >
         −
       </button>
+
       <span className="qty-value">{quantity}</span>
+
       <button
         className="qty-btn"
-        onClick={() => setQuantity(q => (maxStock !== 'N/A' ? Math.min(maxStock, q + 1) : q + 1))}
+        onClick={() =>
+          setQuantity(q =>
+            maxStock !== 'N/A' ? Math.min(maxStock, q + 1) : q + 1
+          )
+        }
       >
         +
       </button>
@@ -77,8 +87,12 @@ function QuantitySelector({ quantity, setQuantity, maxStock }) {
 }
 
 function Product() {
+
   const { id, source } = useParams()
   const navigate = useNavigate()
+
+  const { addToCart } = useContext(CartContext)
+
   const [product, setProduct] = useState(null)
   const [loading, setLoading] = useState(true)
   const [imgError, setImgError] = useState(false)
@@ -99,6 +113,11 @@ function Product() {
     brand: p.brand ?? 'N/A',
     category: p.category,
   })
+
+  const handleAddToCart = () => {
+    addToCart(product)
+    alert("Added to Cart ✅")
+  }
 
   useEffect(() => {
     setLoading(true)
@@ -129,26 +148,8 @@ function Product() {
     setTimeout(() => setCopied(false), 2000)
   }
 
-  if (loading) return (
-    <div className="product-page">
-      <InsaneFluidCursor />
-      <Navbar />
-      <div className="product-loading">
-        <div className="spinner" />
-        <p>Loading product...</p>
-      </div>
-    </div>
-  )
-
-  if (!product) return (
-    <div className="product-page">
-      <InsaneFluidCursor />
-      <Navbar />
-      <div className="product-loading">
-        <p>No product found.</p>
-      </div>
-    </div>
-  )
+  if (loading) return <div>Loading...</div>
+  if (!product) return <div>No product found</div>
 
   return (
     <div className="product-page">
@@ -158,7 +159,6 @@ function Product() {
       <div className="product-wrapper">
         <div className="product-content">
 
-          {/* ── Left Column ── */}
           <div className="product-left-col">
             <div className="product-image-card">
               {!imgError ? (
@@ -176,52 +176,26 @@ function Product() {
               )}
             </div>
 
-            {product.images?.length > 1 && (
-              <div className="product-thumbnails">
-                {product.images.map((img, i) => (
-                  <img
-                    key={i}
-                    src={img}
-                    alt={`thumb-${i}`}
-                    className={`thumb ${selectedImg === img ? 'active' : ''}`}
-                    onClick={() => setSelectedImg(img)}
-                  />
-                ))}
-              </div>
-            )}
-
             <div className="product-actions-row">
               <button
                 className={`action-btn ${wishlisted ? 'wishlisted' : ''}`}
                 onClick={() => setWishlisted(w => !w)}
               >
-                {wishlisted ? '❤️' : '🤍'} {wishlisted ? 'Wishlisted' : 'Wishlist'}
+                {wishlisted ? '❤️' : '🤍'}
               </button>
+
               <button className="action-btn" onClick={handleShare}>
                 {copied ? '✅ Copied!' : '🔗 Share'}
               </button>
             </div>
           </div>
 
-          {/* ── Info Card ── */}
           <div className="product-box">
-            <h2 className="product-title">{product.title}</h2>
+            <h2>{product.title}</h2>
+            <p>{product.description}</p>
+            <p>${product.price}</p>
 
-            <p className="product-description">
-              <b>Description:</b> {product.description}
-            </p>
-
-            <div className="product-meta">
-              <p><b>Price:</b> <span className="price">${product.price}</span></p>
-              <p><b>Rating:</b> {product.rating}</p>
-              <p><b>Stock:</b> {product.stock}</p>
-              <p><b>Brand:</b> {product.brand}</p>
-              <p><b>Category:</b> {product.category}</p>
-            </div>
-
-            <div className="your-rating-wrapper">
-              <YourRating />
-            </div>
+            <YourRating />
 
             <div className="btn-box">
               <QuantitySelector
@@ -229,9 +203,15 @@ function Product() {
                 setQuantity={setQuantity}
                 maxStock={product.stock}
               />
+
               <BuynowBtn product={product} quantity={quantity} />
-              <StatusButton product={product} quantity={quantity} />
+
+              <div onClick={handleAddToCart}>
+                <StatusButton product={product} quantity={quantity} />
+              </div>
+
             </div>
+
           </div>
 
         </div>
