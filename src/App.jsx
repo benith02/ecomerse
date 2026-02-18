@@ -2,7 +2,12 @@ import Routing from './Routing'
 import './App.css'
 
 function App() {
-  return <Routing />
+  return (
+    <>
+      
+      <Routing />
+    </>
+  )
 }
 
 export default App

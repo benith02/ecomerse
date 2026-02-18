@@ -5,20 +5,24 @@ import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 const EMBEDDED_CSS = `
 .cascade-slider_container {
   position: relative;
+  width: 100%;
   max-width: 1300px;
   margin: 0 auto;
   z-index: 20;
   user-select: none;
   touch-action: pan-y;
-  
+  overflow:visible;
+  padding:0;
+  margin:0 auto;
  
 }
 
 .cascade-slider_slides {
-  margin-top: 13%;
+  margin-top: 0;
+  margin-bottom: 0;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 380px;
 }
 
 .cascade-slider_item {
@@ -59,8 +63,8 @@ const EMBEDDED_CSS = `
   color: white;
 }
 
-.cascade-slider_arrow-left { left: -4%; }
-.cascade-slider_arrow-right { right: -4%; }
+.cascade-slider_arrow-left { left: 5%; }
+.cascade-slider_arrow-right { right: 5%; }
 
 /* Bigger images */
 .cascade-slider_slides img {
