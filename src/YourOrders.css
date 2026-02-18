@@ -1,0 +1,60 @@
+/* Page background */
+.orders-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to blue gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+/* Main container */
+.orders-container {
+  width: 100%;
+  max-width: 700px;
+  background: #fdf6ff; /* Light lavender */
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.orders-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #3b0a6b; /* Dark purple */
+}
+
+/* Order Card */
+.order-card {
+  background: #fff0f8; /* Soft pink */
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  border-left: 5px solid #ff69b4; /* Hot pink accent */
+  transition: 0.3s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Order details */
+.order-card h4 {
+  margin-bottom: 10px;
+  color: #4b0082; /* Indigo for headings */
+}
+
+.order-card p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 14px;
+}
+
+/* Empty message */
+.no-orders {
+  text-align: center;
+  color: #aaa;
+  font-size: 16px;
+}

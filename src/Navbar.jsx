@@ -18,7 +18,9 @@ export default function Navbar({ onSearch }) {
         links={[
           { id: "home", label: "Home", href: "/" },
           { id: "cart", label: "My Cart", href: "/cart" },
-          { id: "orders", label: "Your Orders", href: "/OrderPage" },
+
+          { id: "orders", label: "Your Orders", href: "/your-orders" },
+
           { id: "login", label: "Login", href: "/login" },
         ]}
         showLabelsOnMobile={true}

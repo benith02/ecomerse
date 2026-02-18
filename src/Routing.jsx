@@ -7,6 +7,7 @@ import Login from './Login'
 import Register from './Register'
 import DynamicNavigation from './DynamicNavigation'
 import OrderPage from "./OrderPage";
+import YourOrders from './YoursOrders'
 
 
 function Routing() {
@@ -29,7 +30,9 @@ function Routing() {
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-d485dffd3e29b77a20f60fd98e7fac11138b1e4c
+      <Route path="/your-orders" element={<YourOrders />} />
+
+
     </Routes>
   )
 }
