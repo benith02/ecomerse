@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './Style.css'
+import PrimarySearchAppBar from './PrimarySearchAppBar.jsx'
 import ThreeDImageCarousel from "./ThreeDImageCarousel";
 import img1 from "./assets/Best-Size-For-ecommerce-Product-Images.png"
 import img2 from "./assets/8851296e-8824-4504-a34b-a19b61511472-cover.png"
 import img3 from "./assets/a870c365-a15f-45af-84e2-4dc31c85f8b7-cover.png"
 import img4 from "./assets/122469-original-1200.jpg"
 import img5 from "./assets/9c1246f6b5510b0b6d582356bc2e5ae3.png"
+import DynamicNavigation from './DynamicNavigation.jsx'
+import SearchBar from './SearchBar.jsx'
 import Navbar from './Navbar.jsx'
 import InsaneFluidCursor from "./InsaneFluidCursor.jsx";
 
@@ -15,6 +18,7 @@ function Home() {
   const [data, setData] = useState([])
   const [filteredData, setFilteredData] = useState([])
   const [searchText, setSearchText] = useState("")
+
 
   const slides = [
     { id: 1, src: img1 },
@@ -36,6 +40,7 @@ function Home() {
     category: p.category,
     source
   })
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -55,33 +60,36 @@ function Home() {
   }, [])
 
 
+  // ✅ Search function
   const handleSearch = (text) => {
     setSearchText(text)
+
     const filtered = data.filter(item =>
       item.title.toLowerCase().includes(text.toLowerCase())
     )
+
     setFilteredData(filtered)
   }
 
-//   // ✅ Get padding based on screen size + search state
-//  const getPaddingTop = () => {
-//   const w = window.innerWidth
+
+  // ✅ Get padding based on screen size + search state
+ const getPaddingTop = () => {
+  const w = window.innerWidth
   
-//   // 📱 MOBILE — screens smaller than 768px
-//   if (w <= 767) return searchText ? "150px" : "30px"
+  // 📱 MOBILE — screens smaller than 768px
+  if (w <= 767) return searchText ? "150px" : "30px"
   
-//   // 📲 TABLET — screens between 768px and 1024px
-//   if (w <= 1023) return searchText ? "140px" : "40px"
+  // 📲 TABLET — screens between 768px and 1024px
+  if (w <= 1023) return searchText ? "140px" : "40px"
 
-//   // 🖥️ DESKTOP — screens larger than 1024px
-//   return searchText ? "70px" : "30px"
-// }
+  // 🖥️ DESKTOP — screens larger than 1024px
+  return searchText ? "70px" : "30px"
+}
 
-  return (
-   <div
-  className={`page-container hover-target ${searchText ? "search-active" : ""}`}
->
-
+    return (
+    <div
+      className={`page-container hover-target ${searchText ? "search-active" : ""}`}
+    >
       <InsaneFluidCursor />
       <Navbar onSearch={handleSearch} />
       <br />
@@ -91,6 +99,7 @@ function Home() {
       )}
 
       <div className={`product-grid ${searchText ? "search-mode" : ""}`}>
+
         {filteredData.length === 0 ? (
           <p className="no-products">No Products Found</p>
         ) : (
@@ -110,9 +119,11 @@ function Home() {
             </div>
           ))
         )}
+
       </div>
     </div>
   )
+
 }
 
 export default Home
