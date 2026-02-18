@@ -119,7 +119,7 @@ function Product() {
 
   addToCart(product)
   alert(`${product.title} added to cart ✅`)
-  navigate("/Mycart")   
+   
   }
 
   useEffect(() => {
