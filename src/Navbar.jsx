@@ -18,13 +18,9 @@ export default function Navbar({ onSearch }) {
         links={[
           { id: "home", label: "Home", href: "/" },
 
-          { id: "cart", label: "My Cart", href: "/cart" },
+          { id: "cart", label: "My Cart", href: "/MyCart" },
 
           { id: "orders", label: "Your Orders", href: "/your-orders" },
-
-
-          { id: "cart", label: "My Cart", href: "/MyCart" },
-          { id: "orders", label: "Your Orders", href: "/OrderPage" },
 
           { id: "login", label: "Login", href: "/login" },
         ]}

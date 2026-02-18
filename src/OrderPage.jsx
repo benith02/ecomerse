@@ -59,7 +59,7 @@ function OrderPage() {
 
           <div className="form-group">
             <label>Phone Number</label>
-            <input type="tel" placeholder="Enter phone number" required />
+            <input type="number" placeholder="Enter phone number" required />
           </div>
 
           <div className="payment-section">
