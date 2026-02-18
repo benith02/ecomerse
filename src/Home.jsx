@@ -54,6 +54,7 @@ function Home() {
     fetchProducts()
   }, [])
 
+
   const handleSearch = (text) => {
     setSearchText(text)
     const filtered = data.filter(item =>
@@ -62,25 +63,25 @@ function Home() {
     setFilteredData(filtered)
   }
 
-  // ✅ Get padding based on screen size + search state
- const getPaddingTop = () => {
-  const w = window.innerWidth
+//   // ✅ Get padding based on screen size + search state
+//  const getPaddingTop = () => {
+//   const w = window.innerWidth
   
-  // 📱 MOBILE — screens smaller than 768px
-  if (w <= 767) return searchText ? "150px" : "30px"
+//   // 📱 MOBILE — screens smaller than 768px
+//   if (w <= 767) return searchText ? "150px" : "30px"
   
-  // 📲 TABLET — screens between 768px and 1024px
-  if (w <= 1023) return searchText ? "140px" : "40px"
+//   // 📲 TABLET — screens between 768px and 1024px
+//   if (w <= 1023) return searchText ? "140px" : "40px"
 
-  // 🖥️ DESKTOP — screens larger than 1024px
-  return searchText ? "70px" : "30px"
-}
+//   // 🖥️ DESKTOP — screens larger than 1024px
+//   return searchText ? "70px" : "30px"
+// }
 
   return (
-    <div
-      className="page-container hover-target"
-      style={{ paddingTop: getPaddingTop() }}  // ✅ responsive padding
-    >
+   <div
+  className={`page-container hover-target ${searchText ? "search-active" : ""}`}
+>
+
       <InsaneFluidCursor />
       <Navbar onSearch={handleSearch} />
       <br />
@@ -104,7 +105,7 @@ function Home() {
                 />
                 <p><b>{item.title}</b></p>
                 <p>Price: ${item.price}</p>
-                <p className="product-description">{item.description}</p>
+                <p className="product-card-description">{item.description}</p>
               </Link>
             </div>
           ))
