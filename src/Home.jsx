@@ -59,25 +59,40 @@ function Home() {
     fetchProducts()
   }, [])
 
-  // ✅ Search function added
- const handleSearch = (text) => {
-  setSearchText(text)
 
-  const filtered = data.filter(item =>
-    item.title.toLowerCase().includes(text.toLowerCase())
-  )
+  // ✅ Search function
+  const handleSearch = (text) => {
+    setSearchText(text)
 
-  setFilteredData(filtered)
+    const filtered = data.filter(item =>
+      item.title.toLowerCase().includes(text.toLowerCase())
+    )
+
+    setFilteredData(filtered)
+  }
+
+
+  // ✅ Get padding based on screen size + search state
+ const getPaddingTop = () => {
+  const w = window.innerWidth
+  
+  // 📱 MOBILE — screens smaller than 768px
+  if (w <= 767) return searchText ? "150px" : "30px"
+  
+  // 📲 TABLET — screens between 768px and 1024px
+  if (w <= 1023) return searchText ? "140px" : "40px"
+
+  // 🖥️ DESKTOP — screens larger than 1024px
+  return searchText ? "70px" : "30px"
 }
 
-
-  return (
-    <div>
-      {/* <PrimarySearchAppBar /> */}
-
-     
-<Navbar onSearch={handleSearch} />
-      <br /><br />
+    return (
+    <div
+      className={`page-container hover-target ${searchText ? "search-active" : ""}`}
+    >
+      <InsaneFluidCursor />
+      <Navbar onSearch={handleSearch} />
+      <br />
 
       {searchText.trim() === "" && (
         <ThreeDImageCarousel slides={slides} autoplay />
@@ -85,7 +100,6 @@ function Home() {
 
       <div className={`product-grid ${searchText ? "search-mode" : ""}`}>
 
-        {/* ✅ Show message if empty */}
         {filteredData.length === 0 ? (
           <p className="no-products">No Products Found</p>
         ) : (
@@ -100,15 +114,16 @@ function Home() {
                 />
                 <p><b>{item.title}</b></p>
                 <p>Price: ${item.price}</p>
-                <p className="product-description">{item.description}</p>
+                <p className="product-card-description">{item.description}</p>
               </Link>
             </div>
           ))
         )}
-      </div>
 
+      </div>
     </div>
   )
+
 }
 
 export default Home

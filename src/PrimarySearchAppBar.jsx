@@ -60,7 +60,7 @@ export default function Navbar() {
         <Toolbar sx={{ display: "flex", alignItems: "center" }}>
           {/* Logo */}
           <Typography variant="h6" sx={{ fontWeight: 600 }}>
-            Ecom
+            
           </Typography>
 
           {/* Search Bar */}
