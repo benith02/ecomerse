@@ -19,22 +19,26 @@ function YourOrders() {
         ) : (
           orders.map((order) => (
             <div key={order.id} className="order-card">
-              
-              {/* ✅ Product Image */}
+
+              {/* Product Image */}
               <img
                 src={order.image}
                 alt={order.name}
                 className="order-image"
               />
 
-              <h4>{order.name}</h4>
-              <p>Order Date: {order.orderDate}</p>
-              <p>Delivery Date: {order.deliveryDate}</p>
-              <p>Payment: {order.paymentMethod}</p>
+              {/* Order Details */}
+              <div className="order-info">
+                <h4>{order.name}</h4>
+                <p>Order Date: {order.orderDate}</p>
+                <p>Delivery Date: {order.deliveryDate}</p>
+                <p>Payment: {order.paymentMethod}</p>
+              </div>
 
             </div>
           ))
         )}
+
       </div>
     </div>
   );
