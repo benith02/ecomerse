@@ -7,7 +7,11 @@ import Login from './Login'
 import Register from './Register'
 import DynamicNavigation from './DynamicNavigation'
 import OrderPage from "./OrderPage";
+
 import YourOrders from './YoursOrders'
+
+import MyCart from "./MyCart";
+
 
 
 function Routing() {
@@ -18,6 +22,12 @@ function Routing() {
       <Route path="/product/:source/:id" element={<Product />} />
       <Route path="/order" element={<OrderPage />} />
       <Route path="/navbar" element={<Navbar />} />
+<Route path='/MyCart' element={<MyCart/>}/>
+<Route path="/login" element={<Login />} />
+<Route path="/register" element={<Register />} />
+
+
+
 
 
       
@@ -31,6 +41,7 @@ function Routing() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/your-orders" element={<YourOrders />} />
+
 
 
     </Routes>
