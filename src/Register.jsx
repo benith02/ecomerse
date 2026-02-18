@@ -3,41 +3,43 @@ import { useNavigate, Link } from "react-router-dom";
 import "./Style.css";
 import "./LoginEffects.css";
 
-function Login() {
+
+function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const validUser = users.find(
-      (user) => user.username === username && user.password === password
-    );
+    const userExists = users.find((user) => user.username === username);
 
-    if (validUser) {
-      alert("Login Successful");
-
-      localStorage.setItem("loggedUser", JSON.stringify(validUser));
-
-      navigate("/");
-    } else {
-      alert("Invalid Username or Password");
+    if (userExists) {
+      alert("Username already exists");
+      return;
     }
+
+    users.push({ username, password });
+
+    localStorage.setItem("users", JSON.stringify(users));
+
+    alert("Registered Successfully");
+
+    navigate("/login");
   };
 
   return (
     <div className="login-bg">
       <div className="login-box">
-        <h3>Login</h3>
+        <h3>Register</h3>
 
-        <form onSubmit={handleLogin}>
+        <form onSubmit={handleRegister}>
           <input
             type="text"
-            placeholder="Username"
+            placeholder="Create Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
@@ -45,20 +47,20 @@ function Login() {
 
           <input
             type="password"
-            placeholder="Password"
+            placeholder="Create Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
 
-          <button type="submit">Login</button>
+          <button type="submit">Register</button>
         </form>
 
-        {/* ⭐ Register Link */}
+        {/* ⭐ Back To Login */}
         <p style={{ marginTop: "15px", textAlign: "center" }}>
-          New User?{" "}
-          <Link to="/register" style={{ color: "#0a84ff", fontWeight: "bold" }}>
-            Register Here
+          Already have account?{" "}
+          <Link to="/login" style={{ color: "#0a84ff", fontWeight: "bold" }}>
+            Login Here
           </Link>
         </p>
       </div>
@@ -66,4 +68,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;
