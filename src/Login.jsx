@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Style.css";
 import "./LoginEffects.css";
+import {loginUser} from "./api/auth";
 
 function Login() {
 
@@ -14,24 +15,29 @@ function Login() {
 
 
   const navigate = useNavigate();
-
-  const handleLogin = (e) => {
+ const handleLogin = async (e) => {
     e.preventDefault();
 
-    let users = JSON.parse(localStorage.getItem("users")) || [];
+    try {
+      const data = { username, password };
 
-    const validUser = users.find(
-      user => user.username === username && user.password === password
-    );
+      const res = await loginUser(data);
 
-    if(validUser){
-      localStorage.setItem("loggedUser", JSON.stringify(validUser));
-      alert("Login Successful");
-      navigate("/");
-    } else {
-      alert("Invalid Username or Password");
+      console.log(res);
+
+      if(res === "login success"){
+        alert("Login success");
+        navigate("/");   // go to home
+      } else {
+        alert("Invalid credentials");
+      }
+
+    } catch (error) {
+      console.log(error);
+      alert("Login failed");
     }
   };
+  
 
   return (
     <div className="login-bg">

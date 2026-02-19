@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Style.css";
 import "./LoginEffects.css";
+import { registerUser } from "./api/auth";
+
 
 function Register() {
 
@@ -14,28 +16,26 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     if(password !== confirmPassword){
       alert("Passwords do not match");
       return;
     }
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    const userExists = users.find(user => user.username === username);
-
-    if(userExists){
-      alert("Username already exists");
-      return;
+    try {
+      const data ={
+        username,password
+      }
+      const res = await registerUser(data);
+      console.log(res);
+      alert("Registered Successfully");
+    } catch (error) {
+      console.log(error);
+      alert("Registration Failed");
     }
 
-    users.push({ username, password });
-    localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Registered Successfully");
-    navigate("/login");
   };
 
   return (
