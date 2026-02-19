@@ -1,60 +1,83 @@
 /* Page background */
 .orders-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Purple to blue gradient */
+  background: linear-gradient(135deg, #173a7a, #1f4fa3); /* dark blue gradient */
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 40px 20px;
 }
 
+
 /* Main container */
 .orders-container {
   width: 100%;
-  max-width: 700px;
-  background: #fdf6ff; /* Light lavender */
+  max-width: 750px;
+  background: rgba(230, 240, 255, 0.6); /* soft blue glass */
+  backdrop-filter: blur(10px);
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
 /* Title */
 .orders-container h2 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #3b0a6b; /* Dark purple */
+  margin-bottom: 25px;
+  color: #333;
 }
 
-/* Order Card */
+/* ===== Order Card ===== */
+
 .order-card {
-  background: #fff0f8; /* Soft pink */
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 15px;
-  border-left: 5px solid #ff69b4; /* Hot pink accent */
-  transition: 0.3s ease;
-}
+  background: rgba(230, 240, 255, 0.5); /* matching glass blue */
+  backdrop-filter: blur(8px);
+  padding: 22px;
+  border-radius: 14px;
+  margin-bottom: 18px;
 
+  transition: all 0.3s ease;
+
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+/* Glass Hover Effect */
 .order-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  background: rgba(230, 240, 255, 0.75);
 }
 
-/* Order details */
+/* Image */
+.order-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 15px;
+  transition: transform 0.3s ease;
+}
+
+.order-card:hover .order-image {
+  transform: scale(1.05);
+}
+
+/* Text */
 .order-card h4 {
-  margin-bottom: 10px;
-  color: #4b0082; /* Indigo for headings */
+  text-align: center;
+  color: #222;
+  margin-bottom: 8px;
 }
 
 .order-card p {
-  margin: 5px 0;
+  text-align: center;
   color: #666;
   font-size: 14px;
 }
 
-/* Empty message */
+/* No orders text */
 .no-orders {
   text-align: center;
-  color: #aaa;
-  font-size: 16px;
+  color: #555;
+  font-size: 18px;
 }

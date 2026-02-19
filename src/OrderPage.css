@@ -1,6 +1,6 @@
 /* Page Background */
 .page-wrapper {
-  max-height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(135deg, #ffffff00, #15004d00);
   display: flex;
   justify-content: center;
@@ -124,3 +124,6 @@
   font-weight: bold;
   color: #ea5200;
 }
+
+
+

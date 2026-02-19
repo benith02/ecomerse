@@ -5,8 +5,7 @@ function YourOrders() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const savedOrders =
-      JSON.parse(localStorage.getItem("orders")) || [];
+    const savedOrders = JSON.parse(localStorage.getItem("orders")) || [];
     setOrders(savedOrders);
   }, []);
 
@@ -20,10 +19,19 @@ function YourOrders() {
         ) : (
           orders.map((order) => (
             <div key={order.id} className="order-card">
+              
+              {/* ✅ Product Image */}
+              <img
+                src={order.image}
+                alt={order.name}
+                className="order-image"
+              />
+
               <h4>{order.name}</h4>
               <p>Order Date: {order.orderDate}</p>
               <p>Delivery Date: {order.deliveryDate}</p>
               <p>Payment: {order.paymentMethod}</p>
+
             </div>
           ))
         )}
