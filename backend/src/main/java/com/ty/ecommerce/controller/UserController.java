@@ -4,7 +4,7 @@ package com.ty.ecommerce.controller;
 import com.ty.ecommerce.dto.LoginRequest;
 import com.ty.ecommerce.dto.RegisterRequest;
 import com.ty.ecommerce.dto.UserResponse;
-import com.ty.ecommerce.entity.User;
+// import com.ty.ecommerce.entity.User;
 import com.ty.ecommerce.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
