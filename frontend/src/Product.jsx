@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-
 import axios from 'axios'
 import './Style.css'
 import StatusButton from './StatusButton'
@@ -63,15 +62,8 @@ function YourRating() {
 function QuantitySelector({ quantity, setQuantity, maxStock }) {
   return (
     <div className="quantity-selector">
-      <button
-        className="qty-btn"
-        onClick={() => setQuantity(q => Math.max(1, q - 1))}
-      >
-        −
-      </button>
-
+      <button className="qty-btn" onClick={() => setQuantity(q => Math.max(1, q - 1))}>−</button>
       <span className="qty-value">{quantity}</span>
-
       <button
         className="qty-btn"
         onClick={() =>
@@ -79,9 +71,7 @@ function QuantitySelector({ quantity, setQuantity, maxStock }) {
             maxStock !== 'N/A' ? Math.min(maxStock, q + 1) : q + 1
           )
         }
-      >
-        +
-      </button>
+      >+</button>
     </div>
   )
 }
@@ -90,7 +80,6 @@ function Product() {
 
   const { id, source } = useParams()
   const navigate = useNavigate()
-
   const { addToCart } = useContext(CartContext)
 
   const [product, setProduct] = useState(null)
@@ -115,11 +104,9 @@ function Product() {
   })
 
   const handleAddToCart = () => {
-     if (!product) return;
-
-  addToCart(product)
-  alert(`${product.title} added to cart ✅`)
-   
+    if (!product) return
+    addToCart(product)
+    alert(`${product.title} added to cart ✅`)
   }
 
   useEffect(() => {
@@ -163,6 +150,7 @@ function Product() {
         <div className="product-content">
 
           <div className="product-left-col">
+
             <div className="product-image-card">
               {!imgError ? (
                 <img
@@ -179,11 +167,23 @@ function Product() {
               )}
             </div>
 
+            {/* ⭐ MULTI IMAGE SELECTOR */}
+            {product.images?.length > 1 && (
+              <div className="image-selector">
+                {product.images.map((img, index) => (
+                  <button
+                    key={index}
+                    className={`image-thumb-btn ${selectedImg === img ? 'active' : ''}`}
+                    onClick={() => setSelectedImg(img)}
+                  >
+                    <img src={img} alt={`thumb-${index}`} />
+                  </button>
+                ))}
+              </div>
+            )}
+
             <div className="product-actions-row">
-              <button
-                className={`action-btn ${wishlisted ? 'wishlisted' : ''}`}
-                onClick={() => setWishlisted(w => !w)}
-              >
+              <button className={`action-btn ${wishlisted ? 'wishlisted' : ''}`} onClick={() => setWishlisted(w => !w)}>
                 {wishlisted ? '❤️' : '🤍'}
               </button>
 
@@ -191,28 +191,22 @@ function Product() {
                 {copied ? '✅ Copied!' : '🔗 Share'}
               </button>
             </div>
+
           </div>
 
           <div className="product-box">
             <h2>{product.title}</h2>
             <p>{product.description}</p>
-            <p>${product.price}</p>
+            <p>Price: ${product.price}</p>
 
             <YourRating />
 
             <div className="btn-box">
-              <QuantitySelector
-                quantity={quantity}
-                setQuantity={setQuantity}
-                maxStock={product.stock}
-              />
-
+              <QuantitySelector quantity={quantity} setQuantity={setQuantity} maxStock={product.stock} />
               <BuynowBtn product={product} quantity={quantity} />
-
               <div onClick={handleAddToCart}>
-                <StatusButton product={product} quantity={quantity}  />
+                <StatusButton product={product} quantity={quantity} />
               </div>
-
             </div>
 
           </div>
